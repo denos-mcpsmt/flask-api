@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Students</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Classes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>
+                {% for class_name in student.class_names %}
+                    {{ class_name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

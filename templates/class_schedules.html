@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Schedules for Class: {{ schedules[0].class_name }}</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Teacher</th>
+            <th>Day of Week</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for schedule in schedules %}
+        <tr>
+            <td>{{ schedule.teacher_name }}</td>
+            <td>{{ schedule.day_of_week }}</td>
+            <td>{{ schedule.start_time }}</td>
+            <td>{{ schedule.end_time }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

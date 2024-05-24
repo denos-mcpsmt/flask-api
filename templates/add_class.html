@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Class</h1>
+<form action="{{ url_for('add_class') }}" method="POST">
+    <label for="name">Class Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="teacher_id">Teacher:</label>
+    <select id="teacher_id" name="teacher_id" required>
+        {% for teacher in teachers %}
+        <option value="{{ teacher._id }}">{{ teacher.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add Class</button>
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Teachers</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Classes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{ teacher.name }}</td>
+            <td>
+                {% if teacher.classes %}
+                    {% for cls in teacher.classes %}
+                        {{ cls.name }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    No classes assigned
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Schedule</h1>
+<form action="{{ url_for('add_schedule') }}" method="POST">
+    <label for="class_id">Class:</label>
+    <select id="class_id" name="class_id" required>
+        {% for cls in classes %}
+        <option value="{{ cls._id }}">{{ cls.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="teacher_id">Teacher:</label>
+    <select id="teacher_id" name="teacher_id" required>
+        {% for teacher in teachers %}
+        <option value="{{ teacher._id }}">{{ teacher.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="day_of_week">Day of Week:</label>
+    <select id="day_of_week" name="day_of_week" required>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+    </select>
+
+    <label for="start_time">Start Time:</label>
+    <input type="time" id="start_time" name="start_time" required>
+
+    <label for="end_time">End Time:</label>
+    <input type="time" id="end_time" name="end_time" required>
+
+    <button type="submit">Add Schedule</button>
+</form>
+{% endblock %}

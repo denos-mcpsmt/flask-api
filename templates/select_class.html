@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Select Class</h1>
+<form action="{{ url_for('class_schedules') }}" method="GET">
+    <label for="class_id">Select Class:</label>
+    <select id="class_id" name="class_id">
+        {% for cls in classes %}
+        <option value="{{ cls._id }}">{{ cls.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Show Schedule</button>
+</form>
+{% endblock %}

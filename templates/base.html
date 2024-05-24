@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>School Management</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('students') }}">Students</a>
+        <a href="{{ url_for('add_student') }}">Add Student</a>
+        <a href="{{ url_for('classes') }}">Classes</a>
+        <a href="{{ url_for('add_class') }}">Add Class</a>
+        <a href="{{ url_for('enroll') }}">Enroll Student</a>
+        <a href="{{ url_for('teachers') }}">Teachers</a>
+        <a href="{{ url_for('add_teacher') }}">Add Teacher</a>
+        <a href="{{ url_for('schedules') }}">Schedules</a>
+        <a href="{{ url_for('add_schedule') }}">Add Schedule</a>
+        <a href="{{ url_for('select_teacher') }}">Teacher Schedules</a>
+        <a href="{{ url_for('select_class') }}">Class Schedule</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
