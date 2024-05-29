@@ -3,27 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>School Management</title>
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('students') }}">Students</a>
-        <a href="{{ url_for('add_student') }}">Add Student</a>
-        <a href="{{ url_for('classes') }}">Classes</a>
-        <a href="{{ url_for('add_class') }}">Add Class</a>
-        <a href="{{ url_for('enroll') }}">Enroll Student</a>
-        <a href="{{ url_for('teachers') }}">Teachers</a>
-        <a href="{{ url_for('add_teacher') }}">Add Teacher</a>
-        <a href="{{ url_for('schedules') }}">Schedules</a>
-        <a href="{{ url_for('add_schedule') }}">Add Schedule</a>
-        <a href="{{ url_for('select_teacher') }}">Teacher Schedules</a>
-        <a href="{{ url_for('select_class') }}">Class Schedule</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">School Management</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('students') }}">Students</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_student') }}">Add Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('classes') }}">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_class') }}">Add Class</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('enroll') }}">Enroll Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('teachers') }}">Teachers</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_teacher') }}">Add Teacher</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('schedules') }}">Schedules</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_schedule') }}">Add Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('select_teacher') }}">Teacher Schedules</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('select_class') }}">Class Schedule</a></li>
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </nav>
-    <div class="container">
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
